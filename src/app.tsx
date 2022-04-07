@@ -1,23 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { TodoItem } from "./components/todo-item";
+import { AddItem } from "./components/add-item";
+import { useAppSelector } from "./hooks";
+import styles from "./styles.module.scss";
 
 export const App = () => {
+  const todos = useAppSelector((state) => state.todo.todos);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.wrapper}>
+      <div className={styles.todo}>
+        <AddItem />
+        <div className={styles.taskList}>
+          {todos.map((item) => (
+            <TodoItem taskName={item.taskName} isComplete={item.isComplete} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
