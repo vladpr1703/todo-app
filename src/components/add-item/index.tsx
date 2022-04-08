@@ -8,11 +8,13 @@ export const AddItem = () => {
   const dispatch = useAppDispatch();
   const handleAddItem = () => {
     dispatch(todoAdded({ taskName, isCompleted: false }));
+    setTaskName("");
   };
-  const handleChange = (e) => setTaskName(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTaskName(e.target.value);
   return (
     <div className={styles.wrapper}>
-      <input onChange={handleChange}></input>
+      <input onChange={handleChange} value={taskName}></input>
       <button
         onClick={handleAddItem}
         className={styles["plus-button"]}

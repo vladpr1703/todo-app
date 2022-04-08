@@ -2,6 +2,7 @@
   background-color: #fff8e8;
   height: calc(100vh - 100px);
   padding-top: 100px;
+  font-family: "Rubik", sans-serif;
 
   .todo {
     width: 550px;
@@ -20,6 +21,22 @@
     .taskList {
       display: flex;
       flex-direction: column;
+      height: 100%;
+      width: 500px;
+      padding: 10px;
+      overflow-y: scroll;
+      scrollbar-color: #6969dd #e0e0e0;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #d1d1d1;
 }

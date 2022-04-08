@@ -8,6 +8,9 @@ const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
+    loadTasksFromStorage(state, action) {
+      state.todos = action.payload;
+    },
     todoAdded(state, action) {
       state.todos.push(action.payload);
     },
@@ -19,6 +22,6 @@ const todosSlice = createSlice({
 
 export const { actions, reducer } = todosSlice;
 
-export const { todoAdded, todoDelete } = actions;
+export const { todoAdded, todoDelete, loadTasksFromStorage } = actions;
 
 export default reducer;
