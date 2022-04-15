@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 export const App = () => {
   const dispatch = useAppDispatch();
 
-  const todos = useAppSelector((state) => state.todo.todos);
+  const todos: TodosList = useAppSelector((state) => state.todo.todos);
 
   let todosFromStorage: TodosList | null = JSON.parse(
     localStorage.getItem("todos")
@@ -21,10 +21,9 @@ export const App = () => {
     dispatch(loadTasksFromStorage(todosFromStorage));
   }, []);
 
-  useEffect(
-    () => localStorage.setItem("todos", JSON.stringify(todos)),
-    [todos]
-  );
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className={styles.wrapper}>
@@ -37,17 +36,18 @@ export const App = () => {
               <img src={NotFoundImage} alt="" />
             </div>
           ) : (
-            todos.map((item: TodoItemProps, index: number) => {
-              console.log(item);
-              return (
+            [...todos]
+              .sort((x, y) =>
+                x.isComplete === y.isComplete ? 0 : x.isComplete ? 1 : -1
+              )
+              .map((item: TodoItemProps, index: number) => (
                 <TodoItem
-                  key={new Date().getTime() + Math.random()}
+                  key={index + Date.now()}
                   taskName={item.taskName}
                   index={index}
                   isComplete={item.isComplete}
                 />
-              );
-            })
+              ))
           )}
         </div>
       </div>

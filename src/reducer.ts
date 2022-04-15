@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { TodoItemProps } from "./components/todo-item/types";
 
 const initialState = {
   todos: [],
@@ -11,17 +12,35 @@ const todosSlice = createSlice({
     loadTasksFromStorage(state, action) {
       state.todos = action.payload;
     },
-    todoAdded(state, action) {
+    taskAdded(state, action) {
       state.todos.push(action.payload);
     },
-    todoDelete(state, action) {
-      state.todos.splice(action.payload, 1);
+    taskFulfilled(state, action) {
+      const necessaryTask = state.todos.find(
+        (task: TodoItemProps) => task.taskName === action.payload.taskName
+      );
+      necessaryTask.isComplete = action.payload.isComplete;
+    },
+    taskDelete(state, action) {
+      const index = state.todos.findIndex(
+        (task) => task.taskName === action.payload
+      );
+      console.log(index);
+      if (index === state.todos.length - 1) {
+        state.todos.pop();
+      }
+      if (index === -1) {
+        return;
+      } else {
+        state.todos.splice(index, 1);
+      }
     },
   },
 });
 
 export const { actions, reducer } = todosSlice;
 
-export const { todoAdded, todoDelete, loadTasksFromStorage } = actions;
+export const { taskAdded, taskDelete, loadTasksFromStorage, taskFulfilled } =
+  actions;
 
 export default reducer;

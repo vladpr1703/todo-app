@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks";
-import { todoAdded } from "../../reducer";
+import { taskAdded } from "../../reducer";
 import styles from "./styles.module.scss";
 
 export const AddItem = () => {
@@ -8,7 +8,7 @@ export const AddItem = () => {
   const dispatch = useAppDispatch();
 
   const handleAddItem = () => {
-    dispatch(todoAdded({ taskName, isComplete: false }));
+    dispatch(taskAdded({ taskName, isComplete: false }));
     setTaskName("");
   };
 
