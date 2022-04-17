@@ -17,7 +17,11 @@ export const AddItem = () => {
 
   return (
     <div className={styles.wrapper}>
-      <input onChange={handleChange} value={taskName}></input>
+      <input
+        onChange={handleChange}
+        placeholder="Введите текст задачи..."
+        value={taskName}
+      ></input>
       <button
         disabled={!taskName.length}
         onClick={handleAddItem}
