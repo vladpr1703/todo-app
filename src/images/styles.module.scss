@@ -1,0 +1,9 @@
+.shadow:hover {
+  -webkit-filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.4));
+  /* Similar syntax to box-shadow */
+}
+
+.done:hover {
+  fill: green;
+}

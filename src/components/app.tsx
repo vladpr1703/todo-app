@@ -4,6 +4,7 @@ import NotFoundImage from "../images/not-found.svg";
 import { loadTasksFromStorage } from "../reducer";
 import { AddItem } from "./add-item";
 import { TodoItemProps } from "./todo-item/types";
+import { ListsTasks } from "./list-container";
 import { TodosList } from "./types";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import styles from "./styles.module.scss";
@@ -51,6 +52,7 @@ export const App = () => {
           )}
         </div>
       </div>
+      <ListsTasks />
     </div>
   );
 };

@@ -16,10 +16,16 @@ const todosSlice = createSlice({
       state.todos.push(action.payload);
     },
     taskFulfilled(state, action) {
-      const necessaryTask = state.todos.find(
+      const necessaryTask: TodoItemProps = state.todos.find(
         (task: TodoItemProps) => task.taskName === action.payload.taskName
       );
       necessaryTask.isComplete = action.payload.isComplete;
+    },
+    updateTaskName(state, action) {
+      const necessaryTask: TodoItemProps = state.todos.find(
+        (task: TodoItemProps) => task.taskName === action.payload.taskName
+      );
+      necessaryTask.taskName = action.payload.updatedTaskName;
     },
     taskDelete(state, action) {
       const index = state.todos.findIndex(
@@ -40,7 +46,12 @@ const todosSlice = createSlice({
 
 export const { actions, reducer } = todosSlice;
 
-export const { taskAdded, taskDelete, loadTasksFromStorage, taskFulfilled } =
-  actions;
+export const {
+  taskAdded,
+  taskDelete,
+  loadTasksFromStorage,
+  taskFulfilled,
+  updateTaskName,
+} = actions;
 
 export default reducer;
